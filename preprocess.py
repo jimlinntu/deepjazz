@@ -11,9 +11,11 @@ from __future__ import print_function
 
 from music21 import *
 from collections import defaultdict, OrderedDict
-from itertools import groupby, izip_longest
+from itertools import groupby, zip_longest
 from grammar import *
 
+# 
+xrange = range
 #----------------------------HELPER FUNCTIONS----------------------------------#
 
 ''' Helper function to parse a MIDI file into its measures and chords '''
@@ -34,7 +36,7 @@ def __parse_midi(data_fn):
     # Change key signature to adhere to comp_stream (1 sharp, mode = major).
     # Also add Electric Guitar. 
     melody_voice.insert(0, instrument.ElectricGuitar())
-    melody_voice.insert(0, key.KeySignature(sharps=1, mode='major'))
+    melody_voice.insert(0, key.KeySignature(sharps=1)) # Fix bug
 
     # The accompaniment parts. Take only the best subset of parts from
     # the original data. Maybe add more parts, hand-add valid instruments.

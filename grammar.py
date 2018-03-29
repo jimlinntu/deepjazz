@@ -11,7 +11,8 @@ from collections import OrderedDict, defaultdict
 from itertools import groupby
 from music21 import *
 import copy, random, pdb
-
+# replace xrange
+xrange = range
 ''' Helper function to determine if a note is a scale tone. '''
 def __is_scale_tone(chord, note):
     # Method: generate all scales that have the chord notes th check if note is

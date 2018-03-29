@@ -6,11 +6,12 @@ Purpose:    Provide pruning and cleanup functions.
 Code adapted from Evan Chow's jazzml, https://github.com/evancchow/jazzml 
 with express permission.
 '''
-from itertools import izip_longest
+from itertools import zip_longest
 import random
 
 from music21 import *
-
+# replace old function 
+izip_longest = zip_longest
 #----------------------------HELPER FUNCTIONS----------------------------------#
 
 ''' Helper function to down num to the nearest multiple of mult. '''

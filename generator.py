@@ -32,6 +32,8 @@ import lstm
 def __sample(a, temperature=1.0):
     a = np.log(a) / temperature
     a = np.exp(a) / np.sum(np.exp(a))
+    a = a.astype(np.float64)
+    a = a / a.sum()
     return np.argmax(np.random.multinomial(1, a, 1))
 
 ''' Helper function to generate a predicted value from a given matrix '''
@@ -162,9 +164,11 @@ def generate(data_fn, out_fn, N_epochs):
     out_stream.insert(0.0, tempo.MetronomeMark(number=bpm))
 
     # Play the final stream through output (see 'play' lambda function above)
+    # NOT WORKING HERE, I don't know why....
+    '''
     play = lambda x: midi.realtime.StreamPlayer(x).play()
     play(out_stream)
-
+    '''
     # save stream
     mf = midi.translate.streamToMidiFile(out_stream)
     mf.open(out_fn, 'wb')
